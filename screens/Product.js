@@ -4,6 +4,7 @@ import ProductCard from "../components/ProductCard";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
+
   const getProducts = async () => {
     let result = await fetch("https://dummyjson.com/products");
     result = await result.json();

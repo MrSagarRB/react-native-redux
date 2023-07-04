@@ -1,13 +1,24 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { addToCart } from "../redux/action";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const ProductCard = ({ name, price, image }) => {
+const ProductCard = (props) => {
+  let { name, price, image } = props;
+
+  const dispatch = useDispatch();
+
+  const handelAddToCart = () => {
+    dispatch(addToCart(props));
+  };
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: image }} style={styles.image} />
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.price}>${price}</Text>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={handelAddToCart} style={styles.button}>
         <Text style={styles.buttonText}>Add to Cart</Text>
       </TouchableOpacity>
     </View>
